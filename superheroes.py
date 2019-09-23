@@ -1,9 +1,14 @@
+import random
+from random import randint
+
 class Ability:
-    def __init__(self, name, max_damage):
+    def __init__(self, name, attack_strength):
         self.name = str(name)
-        self.max_damage = int(max_damage)
-    def attack():
-        print("Attacking")
+        self.attack_strength = int(attack_strength)
+    def attack(self):
+        attack_strength = randint(2,7)
+        return attack_strength
+
 
 class Armor:
     def __init__(self, name, max_block):
@@ -28,3 +33,8 @@ class Hero:
         print("Alive or not")
     def fight():
         print("This requires an opponent in the hero class")
+
+if __name__ == "__main__":
+    ability = Ability("Debugging Ability", 20)
+    print(ability.name)
+    print(ability.attack())
