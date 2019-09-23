@@ -48,17 +48,38 @@ class Hero:
         damage_taken = damage - self.defend(damage)
         self.current_health -= damage_taken
 
-    def is_alive():
-        print("Alive or not")
+    def is_alive(self):
+        if self.current_health > 0:
+            return True
+        else:
+            return False
 
-    def fight():
-        print("This requires an opponent in the hero class")
+    def fight(self, opponent):
 
+        while self.is_alive() and opponent.is_alive():
+
+            if len(self.abilities) == 0 and len(opponent.abilities) == 0:
+                print("Draw")
+                break
+
+            self.take_damage(opponent.attack())
+            opponent.take_damage(self.attack())
+
+        if self.current_health > opponent.current_health:
+            print(self.name + " Wins!")
+        else:
+            print(opponent.name + " Wins!")
 
 if __name__ == "__main__":
 
-    hero = Hero("Grace Hopper", 200)
-    shield = Armor("Shield", 50)
-    hero.add_armor(shield)
-    hero.take_damage(50)
-    print(hero.current_health)
+    hero1 = Hero("Wonder Woman")
+    hero2 = Hero("Ares")
+    ability1 = Ability("Super Strength", 300)
+    ability2 = Ability("Lasso of Truth", 130)
+    ability3 = Ability("Wrath of the Gods", 80)
+    ability4 = Ability("Sword Swipe", 20)
+    hero1.add_ability(ability1)
+    hero1.add_ability(ability2)
+    hero2.add_ability(ability3)
+    hero2.add_ability(ability4)
+    hero1.fight(hero2)
