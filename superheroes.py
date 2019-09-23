@@ -26,24 +26,34 @@ class Hero:
         self.current_health = starting_health
         self.abilities = []
         self.armors = []
-    def add_ability():
-        print("This adds an ability")
-    def attack():
-        print("This will attack")
+
+    def add_ability(self, ability):
+        self.abilities.append(ability)
+
+    def attack(self):
+        total_damage = 0
+        for ability in self.abilities:
+            total_damage += ability.attack()
+        return total_damage
+
     def defend():
         print("Defend from incoming damage")
+
     def take_damage():
         print("Damage")
+
     def is_alive():
         print("Alive or not")
+
     def fight():
         print("This requires an opponent in the hero class")
 
 
 if __name__ == "__main__":
-    ability = Ability("Debugging Ability", 20)
-    print(ability.name)
-    print(ability.attack())
-    my_hero = Hero("Grace Hopper", 200)
-    print(my_hero.name)
-    print(my_hero.current_health)
+
+    ability = Ability("Great Debugging", 50)
+    another_ability = Ability("Smarty Pants", 90)
+    hero = Hero("Grace Hopper", 200)
+    hero.add_ability(ability)
+    hero.add_ability(another_ability)
+    print(hero.attack())
