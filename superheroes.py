@@ -73,7 +73,7 @@ class Hero:
 class Weapon(Ability):
     def attack(self):
         ''' Returns a random value between one half to the full attack power '''
-        return r.randint(self.attack_strength//2, self.attack_strength)
+        return randint(self.attack_strength//2, self.attack_strength)
 
 
 class Team:
@@ -84,6 +84,22 @@ class Team:
         '''
         self.name = team_name
         self.heroes = []
+
+    def remove_hero(self, name):
+        for i, hero in enumerate(self.heroes):
+            if hero.name == name:
+                self.heroes.pop(i)
+                break
+        #Hero not found
+        else:
+            return 0
+
+    def view_all_heroes(self):
+        for hero in self.heroes:
+            print(hero.name)
+
+    def add_hero(self, hero):
+        self.heroes.append(hero)
 
 if __name__ == "__main__":
 
