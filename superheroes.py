@@ -39,7 +39,7 @@ class Hero:
     def add_armor(self, armor):
         self.armors.append(Armor(armor.name, armor.max_block))
 
-    def defend(self, damage_amt):
+    def defend(self):
         total_blocked = 0
         for armor in self.armors:
             total_blocked += armor.block()
@@ -47,7 +47,7 @@ class Hero:
         return total_blocked
 
     def take_damage(self, damage):
-        damage_taken = damage - self.defend(damage)
+        damage_taken = damage - self.defend()
         self.current_health -= damage_taken
 
     def is_alive(self):
@@ -69,8 +69,12 @@ class Hero:
 
         if self.current_health > opponent.current_health:
             print(self.name + " Wins!")
+            self.add_kill(1)
+            opponent.add_deaths(1)
         else:
             print(opponent.name + " Wins!")
+            self.add_deaths(1)
+            opponent.add_kill(1)
 
     def add_kill(self, num_kills):
         self.kills += num_kills
@@ -108,6 +112,23 @@ class Team:
 
     def add_hero(self, hero):
         self.heroes.append(hero)
+
+    def attack(self, opposing_team):
+
+        while len([h for h in self.heroes if h.is_alive()]) > 0 and len([h for h in opposing_team.heroes if h.is_alive()]) > 0:
+            ally = random.choice([h for h in self.heroes if h.is_alive()])
+            opp = random.choice([h for h in opposing_team.heroes if h.is_alive()])
+            ally.fight(opp)
+
+
+    def revive_heroes(self, health=100):
+        for hero in self.heroes:
+            hero.current_health = health
+
+
+    def stats(self):
+        for hero in self.heroes:
+            print(hero.kills, hero.deaths)
 
 if __name__ == "__main__":
 
