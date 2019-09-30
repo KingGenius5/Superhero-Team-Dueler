@@ -1,6 +1,7 @@
 import random
 from random import randint
 
+
 class Ability:
     def __init__(self, name, attack_strength):
         self.name = str(name)
@@ -82,6 +83,12 @@ class Hero:
     def add_deaths(self, num_deaths):
         self.deaths += num_deaths
 
+    def add_weapon(self, weapon):
+        self.abilities.append(weapon)
+
+    #def add_relic(self, relic)Will revisit this
+
+
 class Weapon(Ability):
     def attack(self):
         ''' Returns a random value between one half to the full attack power '''
@@ -120,15 +127,20 @@ class Team:
             opp = random.choice([h for h in opposing_team.heroes if h.is_alive()])
             ally.fight(opp)
 
-
     def revive_heroes(self, health=100):
         for hero in self.heroes:
             hero.current_health = health
 
-
     def stats(self):
         for hero in self.heroes:
             print(hero.kills, hero.deaths)
+
+
+class Arena:
+    def __init__(self):
+        self.team_one = Team("Team Good Guy")
+        self.team_two = Team("Team Bad Guy")
+
 
 if __name__ == "__main__":
 
