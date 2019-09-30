@@ -24,6 +24,8 @@ class Hero:
         self.current_health = starting_health
         self.abilities = []
         self.armors = []
+        self.kills = 0
+        self.deaths = 0
 
     def add_ability(self, ability):
         self.abilities.append(ability)
@@ -69,6 +71,12 @@ class Hero:
             print(self.name + " Wins!")
         else:
             print(opponent.name + " Wins!")
+
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+
+    def add_deaths(self, num_deaths):
+        self.deaths += num_deaths
 
 class Weapon(Ability):
     def attack(self):
