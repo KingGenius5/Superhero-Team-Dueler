@@ -70,6 +70,21 @@ class Hero:
         else:
             print(opponent.name + " Wins!")
 
+class Weapon(Ability):
+    def attack(self):
+        ''' Returns a random value between one half to the full attack power '''
+        return r.randint(self.attack_strength//2, self.attack_strength)
+
+
+class Team:
+    def __init__(self, team_name):
+        '''
+            team_name: String
+            heroes: List
+        '''
+        self.name = team_name
+        self.heroes = []
+
 if __name__ == "__main__":
 
     hero1 = Hero("Wonder Woman")
