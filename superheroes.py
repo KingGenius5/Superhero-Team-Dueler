@@ -166,6 +166,33 @@ class Arena:
         hero.add_weapon(self.create_weapon())
         return hero
 
+    def build_team_one(self):
+        count = int(input("Enter # of heroes for team 1: "))
+
+        while(count>0):
+            self.team_one.heroes.append(self.create_hero())
+            count -= 1
+
+    def build_team_two(self):
+        count = int(input("Enter # of heroes for team 2: "))
+        team_two = Team("Team Two")
+        while(count>0):
+            team_two.heroes.append(self.create_hero())
+            count -= 1
+
+    def team_battle(self):
+        self.team_one.attack(self.team_two)
+
+    def show_stats(self):
+        if len(self.team_one.alive_heroes()) > 0:
+            print("Team One Wins!")
+        else:
+            print("Team Two Wins!")
+        self.team_one.stats()
+        self.team_two.stats()
+        self.team_one.alive_heroes()
+        self.team_two.alive_heroes()
+
 
 if __name__ == "__main__":
 
@@ -180,3 +207,8 @@ if __name__ == "__main__":
     hero2.add_ability(ability3)
     hero2.add_ability(ability4)
     hero1.fight(hero2)
+    arena = Arena()
+    arena.build_team_one()
+    arena.build_team_two()
+    arena.team_battle()
+    arena.show_stats()
