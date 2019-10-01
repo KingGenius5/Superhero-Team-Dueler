@@ -138,8 +138,33 @@ class Team:
 
 class Arena:
     def __init__(self):
+
         self.team_one = Team("Team Good Guy")
         self.team_two = Team("Team Bad Guy")
+
+
+    def create_ability(self):
+        name = input("Enter an ability name: ")
+        strength = int(input("Enter ability strength: "))
+        return Ability(name, strength)
+
+    def create_weapon(self):
+        name = input("Enter a Weapon Name ")
+        strength = int(input("Enter weapon strength: "))
+        return Weapon(name, strength)
+
+    def create_armor(self):
+        name = input("Enter a Weapon Name ")
+        strength = int(input("Enter armor block: "))
+        return Armor(name, strength)
+
+    def create_hero(self):
+        name = input("Enter a hero name: ")
+        hero = Hero(name)
+        hero.add_ability(self.create_ability())
+        hero.add_armor(self.create_armor())
+        hero.add_weapon(self.create_weapon())
+        return hero
 
 
 if __name__ == "__main__":
